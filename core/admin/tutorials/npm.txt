@@ -1,0 +1,2 @@
+npm install gulp-sass --save-dev - Install gulp-sass with save dev dependencies
+npl list -g --depth=0 - See installed NPM packages in global space

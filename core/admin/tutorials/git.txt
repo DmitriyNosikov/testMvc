@@ -1,0 +1,9 @@
+git remote rm [remote_name] - Remove remote with name remote_name
+git remote add [remote_name] [remote_url] - Add new remote with Name remote_name and URL remote_url
+git remote -v - Show all remotes with URL
+gitk - Show interactive panel for controll git added changes
+git status - See all new changes
+git add . - Add to index all new files
+git log --pretty=oneline - See all commits on One line format
+git push [your_remote_name] [branch_name] - Push to server all new commots, to your_remote_name and branch branch_name
+git pull [repository] - Download and merge changes from server to you PC
