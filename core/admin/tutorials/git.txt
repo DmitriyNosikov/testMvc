@@ -7,3 +7,11 @@ git add . - Add to index all new files
 git log --pretty=oneline - See all commits on One line format
 git push [your_remote_name] [branch_name] - Push to server all new commots, to your_remote_name and branch branch_name
 git pull [repository] - Download and merge changes from server to you PC
+
+Для удаления файла из git-репозитория без его физического удаления:
+
+git rm --cached mylogfile.log
+Для удаления папки (рекурсивно) можно сделать так:
+
+git rm -r --cached folderName
+А для того, чтобы ситуация не повторялась, лучше добавьте файл или папку в .gitignore.

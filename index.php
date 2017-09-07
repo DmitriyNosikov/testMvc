@@ -1,58 +1,21 @@
 <?php
-/* //////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////FRONT CONTROLLER /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////*/
+if(file_exists($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php')) require_once($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php');
+/* Тестовый блок */
 
-/* Общие настройки */
-
-//-- Объявление системных констант
-define("ROOT_DIR", $_SERVER["DOCUMENT_ROOT"]);
-define("SITE_LANG", "ru"); //ru, en
-define("DISPLAY_ERRORS", true);
-
-//-- Включение/Выключение ошибок
-if(defined(DISPLAY_ERRORS) && DISPLAY_ERRORS == true)
-{
-	ini_set("display_errors", 1);
-	//0 - Отключение ошибок, E_ALL - Все ошибки. Константы для данной функции http://php.net/manual/ru/errorfunc.constants.php	
-	ini_set("error_reporting", E_ALL); 
-}
-else
-{
-	ini_set("display_errors", 0);
-	ini_set("error_reporting", 0); 
-}
-
-/* Подключение системных файлов */
-if(file_exists(ROOT_DIR."/core/classes/router.php")) require_once(ROOT_DIR."/core/classes/router.php");
-
-
-/* Установка соединения с БД */
-
-/* Вызов компонента Router */
+$str = 'Он учился в вузе с 2000 по 2017 год';
+$pattern = '#2017#';
+dump(preg_match($pattern, $str));
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/core/blocks/css/main/main.css">
 	<title>Test MVC project</title>
 </head>
 <body>
-<?
-	$router = new Router();
-	
-	$router->run();
-
-	/* Рабочая область */
-	function dump($val, $die = false)
-	{
-		echo "<pre style='display: block; background: #ccc; padding: 10px; border-radius: 5px;'>";
-		print_r($val);
-		echo "</pre>";
-		
-		if($die) die();
-	};
-?>
+	<span class="error-block has-error">it`s success</span><br>
+	<span class="success-block has-success">it`s error</span>
 </body>
 </html>

@@ -1,0 +1,35 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.has-error {
+  border-color: #b70808;
+  color: #b70808;
+}
+
+.has-success {
+  border-color: #1a8409;
+  color: #1a8409;
+}
+
+.error-block {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(183, 8, 8, 0.3);
+}
+
+.success-block {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(26, 132, 9, 0.3);
+}
+
+pre {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background: #ccc;
+}

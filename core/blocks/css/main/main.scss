@@ -1,0 +1,47 @@
+$errorColor: #b70808;
+$errorColorA: rgba(183, 8, 8, 0.3);
+$successColor: #1a8409;
+$successColorA: rgba(26, 132, 9, 0.3);
+
+@mixin block
+{
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+*
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.has-error
+{
+	border-color: $errorColor;
+	color: $errorColor;
+}
+
+.has-success
+{
+	border-color: $successColor;
+	color: $successColor;
+}
+
+.error-block
+{
+	@include block;
+	background: $errorColorA;
+}
+
+.success-block
+{
+	@include block;
+	background: $successColorA;
+}
+
+pre
+{
+	@include block;
+	background: #ccc;
+}
