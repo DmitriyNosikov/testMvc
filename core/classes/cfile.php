@@ -122,7 +122,7 @@ class CFile
 	}
 	
 	/*
-	* @description Метод для молучения расширения файла
+	* @description Метод для получения расширения файла
 	* @param {string} $fullFileName - Полное имя файла, включая расширение (image.jpg | archive.rar)
 	*/
 	public function getFileExt($fullFileName)
@@ -174,7 +174,7 @@ class CFile
 	{
 		$fileExt = $this->getFileExt($fullFileName);
 
-		echo "РАсширение ".$fileExt."<br>";
+		echo "Расширение ".$fileExt."<br>";
 		
 		if(!empty($fileExt))
 		{

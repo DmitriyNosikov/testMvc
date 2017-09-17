@@ -9,6 +9,7 @@ AddDefaultCharset UTF-8
 	php_value display_errors 1
 	php_value error_reporting E_ALL
 	php_value mbstring.internal_encoding UTF-8
+	php_value mbstring.func_overload 2
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -17,7 +18,7 @@ AddDefaultCharset UTF-8
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-l
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(.*)$ /index.php [L]
+	RewriteRule ^(.*)$ /index.php [L,QSA]
 	RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
 </IfModule>
 

@@ -1,27 +1,15 @@
 <?php
-	/* /////////////////////////////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////// FRONT CONTROLLER /////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /* Общие настройки */
+setlocale('LC_ALL', ''); //Установка локали для строковых функций
 
 //-- Объявление системных констант
-define("ROOT", $_SERVER["DOCUMENT_ROOT"]);
-define("SITE_LANG", "ru"); //ru, en
-define("DISPLAY_ERRORS", true);
+require_once($_SERVER['DOCUMENT_ROOT'].'/core/config/siteconn.php');
 
-//-- Включение/Выключение ошибок
-if(defined(DISPLAY_ERRORS) && DISPLAY_ERRORS == true)
-{
-	ini_set("display_errors", 1);
-	//0 - Отключение ошибок, E_ALL - Все ошибки. Константы для данной функции http://php.net/manual/ru/errorfunc.constants.php	
-	ini_set("error_reporting", E_ALL); 
-}
-else
-{
-	ini_set("display_errors", 0);
-	ini_set("error_reporting", 0); 
-}
+session_start(); //Старт сессии пользователя $_SESSION (!!!В дальнейшем, нужно стартовать, только если пользователь авторизовался)
 
 /* Подключение системных файлов */
 spl_autoload_register(function($className){	
@@ -44,6 +32,7 @@ spl_autoload_register(function($className){
 if(file_exists(ROOT."/core/tools/functions.php")) require_once(ROOT."/core/tools/functions.php");
 
 /* Установка соединения с БД */
+require_once(ROOT.'/core/config/dbconn.php');
 
 /* Вызов компонента Router */
 if(class_exists('Core\Classes\Router'))
