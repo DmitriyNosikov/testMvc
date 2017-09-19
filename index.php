@@ -1,10 +1,5 @@
 <?php
 if(file_exists($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php')) require_once($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php');
-/* Тестовый блок */
-
-$str = 'Он учился в вузе с 2000 по 2017 год';
-$pattern = '#2017#';
-dump(preg_match($pattern, $str));
 ?>
 
 <!DOCTYPE html>

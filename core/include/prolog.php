@@ -6,8 +6,10 @@
 /* Общие настройки */
 setlocale('LC_ALL', ''); //Установка локали для строковых функций
 
+define('ROOT', $_SERVER["DOCUMENT_ROOT"]);
+
 //-- Объявление системных констант
-require_once($_SERVER['DOCUMENT_ROOT'].'/core/config/siteconn.php');
+require_once(ROOT.'/core/config/siteconn.php');
 
 session_start(); //Старт сессии пользователя $_SESSION (!!!В дальнейшем, нужно стартовать, только если пользователь авторизовался)
 

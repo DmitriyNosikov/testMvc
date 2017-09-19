@@ -15,6 +15,30 @@ function dump($val, $die = false)
     }
 }
 
+//Подумать, как сделать форматированную запись массива в файл + добавлять бэктрейс
+function add2Log($text)
+{
+    if(defined('LOG_FILENAME'))
+    {
+        $logFile = @fopen(LOG_FILENAME, 'a+');
+
+        if($logFile && flock($logFile, LOCK_EX))
+        {
+            ignore_user_abort(true);
+
+            @fwrite($logFile, 'Host: '.$_SERVER['HTTP_HOST'].PHP_EOL.'Date: '.date('d.m.Y H:i:s').PHP_EOL.$text.PHP_EOL);
+            @fwrite($logFile, '-----------------'.PHP_EOL);
+            @fwrite($logFile, 'Stacktrace: '.print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), true).PHP_EOL);
+
+            @fflush($logFile);
+            @flock($logFile, LOCK_UN);
+            @fclose($logFile);
+            
+            ignore_user_abort(false);
+        }
+    }
+}
+
 //@description Транслитерация строки
 function rus2translit($str)
 {
