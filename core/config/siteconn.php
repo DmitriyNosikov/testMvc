@@ -1,4 +1,7 @@
 <?php
+setlocale('LC_ALL', ''); //Установка стоковой локали для строковых функций
+date_default_timezone_set('Europe/Moscow'); //Установка дефолтнйо временной зоны
+
 define('DISPLAY_ERRORS', true);
 define('LANG_ID', 'ru'); //ru, en
 define('SITE_CHARSET', 'UTF-8');
@@ -8,6 +11,8 @@ define('DATETIME_FORMAT', 'd.m.Y H:i:s');
 //http://php.net/manual/ru/function.chmod.php
 define('FILE_PERMISSION', 0644);
 define('DIR_PERMISSION', 0755);
+@umask(~DIR_PERMISSION);
+
 define('LOG_FILENAME', 'srv_log.txt');
 
 @ini_set('default_charset', SITE_CHARSET);

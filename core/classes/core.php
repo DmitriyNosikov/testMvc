@@ -29,11 +29,11 @@ class Core
 		"FROM"=>Почта отправителя,
 		"TO"=>Почта или массив с адресами почт, на которые необходимо отправить сообщение,
 		"SUBJECT"=>Тема сообщения,
-		"TYPE"=> text|htmp - тип сообщения обычный текст или html код,
+		"TYPE"=> text|html - тип сообщения обычный текст или html код,
 		"ENCODING"=> utf-8|windows-1251 - кодировка сообещния
 		"TEXT"=>Текст сообщения
 	*/
-	public static function send($params)
+	public static function emailSend($params)
 	{
 		$from = $params['FROM'];
 		
@@ -46,20 +46,22 @@ class Core
 		}
 		else $to = $params['TO'];
 		
-		// $subject = "=?utf-8?b?".base64_encode($params['SUBJECT'])."?=";
-		$subject = "=?windows-1251??b?".base64_encode($params['SUBJECT'])."?=";
 		$encoding = $params['ENCODING'];
+
+		if(!$encoding) $encoding = 'windows-1251';
+
+		// $subject = "=?utf-8?b?".base64_encode($params['SUBJECT'])."?=";
+		$subject = "=?".$encoding."??B?".base64_encode($params['SUBJECT'])."?=";
 		$message = $params['TEXT'];
 		
-		if(!$encoding) $encoding = 'windows-1251';
 		
 		$headers .= "From: <".$from	."> \r\n";
 		$headers .= "Reply-To: ".$from	." \r\n";
 		$headers .= "MIME-Version: 1.0" . "\r\n";
 		$headers .= "X-Mailer: PHP/" . phpversion();
 		
-		if($params['TYPE'] == 'text') $headers .= "Content-type: text/plain; charset='".$params['ENCODING']."' \r\n";
-		else if($params['TYPE'] == 'html') $headers .= "Content-type: text/html; charset='".$params['ENCODING']."' \r\n";
+		if($params['TYPE'] == 'text') $headers .= "Content-type: text/plain; charset='".$encoding."' \r\n";
+		else if($params['TYPE'] == 'html') $headers .= "Content-type: text/html; charset='".$encoding."' \r\n";
 		
 		return mail($to, $subject, $from, $message, $headers);
 	}

@@ -59,9 +59,9 @@ class PDO_SQL implements standartSql
 	{
 		$dsn = 'mysql:host='.$dbHost.';dbname='.$dbName.';charset='.$dbCharset;
 		$dsnOpt = array(
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	        PDO::ATTR_EMULATE_PREPARES => false,
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //Вывод ошибок (Только исключения)
+	        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //Методы вывода результата запроса по-умолчанию
+	        PDO::ATTR_EMULATE_PREPARES => false, //Эмулирование подготовленных запросов
 		);
 
 		$this->pdo = new PDO($dsn, $userName, $userPass, $dsnOpt);
@@ -78,7 +78,7 @@ class PDO_SQL implements standartSql
 	{
 		$stmt = $this->pdo->prepare($queryString);
 		$affectedRows = $stmt->execute($queryParams);
-		$result = $stmt->fetchAll();
+		$result = $stmt->fetchAll(); //Лучше перейти на метод fetch() в цикле, т.к. при больших результатах запросов, может сильно грузить
 
 		if(!empty($result)) return $result;
 		else return $affectedRows;
