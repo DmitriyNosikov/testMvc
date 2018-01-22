@@ -118,3 +118,20 @@ function num2word($num, $words)
         }
     }
 }
+
+/**
+ * Функция для конвертации PDF в JPG
+ * @param  [string] $filePath Путь до конвертируемого PDF файла, включая имя и расширение
+ * @param  [string] $convertPath Путь, в который будет сконвертировано изображение, включая имя файла и расширение
+ * Example:
+ * $pdf_file = "file.pdf";
+ * $pdf_first_page = "file.pdf[0]";
+ * $jpg_file = 'upload/'.str_replace("pdf", "jpg", $pdf_file);
+ * pdf_to_jpg($pdf_first_page, $jpg_file);
+ */
+function pdf_to_jpg($filePath, $convertPath = '.')
+{
+    $filePath = escapeshellarg($filePath);
+    $convertPath = escapeshellarg($convertPath);
+    exec("convert ".$filePath." ".$convertPath);
+}

@@ -1,5 +1,13 @@
 <?php
 if(file_exists($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php')) require_once($_SERVER['DOCUMENT_ROOT'].'/core/include/prolog.php');
+
+$test = new Core\Classes\PDOSql($DBHost, $DBName, $DBCharset, $DBUser, $DBPass);
+
+$condition = array('CountryCode' => 'RUS');
+$res = $test->selectOne('city', $condition);
+
+dump($res);
+
 ?>
 
 <!DOCTYPE html>
